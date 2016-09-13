@@ -61,7 +61,7 @@ def fetch_token_header_payload(token):
         payload = json.loads(jwt.utils.base64url_decode(payload_segment).decode('utf-8'))
     except TypeError as e:
         current_app.logger.exception(e)
-        raise jwt.DecodeError('Invalid header padding')
+        raise jwt.DecodeError('Invalid payload padding')
 
     return (header, payload)
 
