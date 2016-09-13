@@ -238,11 +238,11 @@ class Providers(Resource):
                 active_providers.append({
                     'name': 'google',
                     'clientId': current_app.config.get("GOOGLE_CLIENT_ID"),
-                    'url': api.url_for(Google),
-                    'redirectUri': api.url_for(Google),
+                    'url': api.url_for(Google, _external=True, _scheme='https'),
+                    'redirectUri': api.url_for(Google, _external=True, _scheme='https'),
                     'authorizationEndpoint': current_app.config.get("GOOGLE_AUTH_ENDPOINT"),
-                    'scope': [],
-                    'responseType': 'authorization_code'
+                    'scope': ['openid email'],
+                    'responseType': 'code'
                 })
             else:
                 raise Exception("Unknown authentication provider: {0}".format(provider))
